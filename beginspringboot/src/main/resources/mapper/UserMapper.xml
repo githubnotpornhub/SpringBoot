@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.beginspringboot.dao.UserDao">
+
+    <select id="findAllUsers" resultType="com.my.beginspringboot.entity.User">
+        select id,
+               username,
+               password,
+               age,
+               email,
+               job,
+               sal,
+               bonus, year
+        from userinfo
+    </select>
+
+    <select id="queryUserByUsername" resultType="com.my.beginspringboot.entity.User">
+        select id,username,password,age,job,sal
+        from userinfo
+        where username = #{username}
+    </select>
+
+    <select id="queryUserById" resultType="com.my.beginspringboot.entity.User">
+        select username, password
+        from userinfo
+        where id = #{id}
+    </select>
+
+    <insert id="insertUser">
+        insert into userinfo(username, password, age, email, job, sal, bonus, year)
+        values (#{username}, #{password}, #{age}, #{email}, #{job}, #{sal}, #{bonus}, #{year})
+    </insert>
+
+    <update id="updateUser">
+        update userinfo
+        set username = #{username},
+            password = #{password},
+            age      = #{age},
+            email    =#{email},
+            job      = #{job},
+            sal      = #{sal},
+            bonus    = #{bonus},
+            year     = #{year}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUser">
+        delete
+        from userinfo
+        where id = #{id}
+    </delete>
+
+</mapper>
